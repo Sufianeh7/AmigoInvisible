@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 
 export class GrupoService{
   // Url del backend (Node)
-  private apiUrl = 'http://localhost:3000/api/sorteos';
+  private apiUrl = 'https://amigoinvisible-rpo0.onrender.com/api/sorteos';
 
   constructor(private http: HttpClient){}
 
