@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 font-sans">
+  @if (!grupo()) {
+    <div class="text-center py-20">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+      <p class="text-gray-500 font-medium">Recuperando los datos de tu sorteo...</p>
+    </div>
+  } @else {
+    <div class="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100 p-8 text-center animate-fade-in">
+      <h1 class="text-4xl font-extrabold text-red-600 mb-3 drop-shadow-sm">
+        ¡Tu Grupo está listo!
+      </h1>
+      <p class="text-gray-500 mb-8 text-lg">
+        Revisa que todos los amigos estén en la lista antes de enviar los correos definitivos.
+      </p>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 text-left mb-8 shadow-inner">
+        <h3 class="font-bold text-xl text-gray-800 border-b border-gray-200 pb-3 mb-4 flex justify-between items-center">
+          <span>📋 {{ grupo().nombreGrupo }}</span>
+          @if (grupo().presupuesto) {
+            <span class="text-sm font-normal text-gray-500 bg-white border px-3 py-1 rounded-full shadow-sm">
+              Presupuesto: {{ grupo().presupuesto }}
+            </span>
+          }
+        </h3>
+
+        <ul class="space-y-3 text-gray-700 font-medium">
+          @for (amigo of grupo().participantes; track $index) {
+            <li class="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+              <span class="bg-green-100 text-green-600 rounded-full p-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </span>
+              <span>{{ amigo.nombre }}</span>
+              <span class="text-gray-400 font-normal text-sm ml-auto">{{ amigo.email }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+
+        <button (click)="volverAEditar()" [disabled]="enviando()"
+          class="bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 font-bold py-4 px-8 rounded-xl shadow-sm transition w-full sm:w-auto text-lg flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Volver a editar
+        </button>
+
+        <button (click)="lanzarSorteo()" [disabled]="enviando()"
+          class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg w-full sm:w-auto text-lg transition flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          @if (enviando()) {
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Repartiendo suerte...
+          } @else {
+            🎲 ¡Realizar Sorteo!
+          }
+        </button>
+
+      </div>
+    </div>
+  }
+</div>

@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CrearSorteo } from './componentes/crear-sorteo/crear-sorteo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CrearSorteo],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('Angular');
