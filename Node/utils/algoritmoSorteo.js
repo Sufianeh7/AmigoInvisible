@@ -27,7 +27,7 @@ exports.generarEmparejamientos = (participantes) => {
             const esMismoUsuario = de.email === para.email;
 
             // Regla 2 : El receptor no puede estar en mis excluidos
-            const estaExcluido = de.exclusiones.includes(para.email);
+            const estaExcluido = de.exclusiones.includes(para.nombre);
 
             if( esMismoUsuario || estaExcluido ){
                 esValido = false;
