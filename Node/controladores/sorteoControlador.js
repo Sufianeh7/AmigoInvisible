@@ -1,5 +1,5 @@
 const Sorteo = require('../modelos/Sorteo');
-const { v4: uuidv4 } = require('uuid'); // Librería para generar tokens únicos
+const crypto = require('crypto');
 const { generarEmparejamientos } = require('../utils/algoritmoSorteo');
 const { enviarCorreosSorteo } = require('../utils/mailer');
 
@@ -10,7 +10,7 @@ exports.crearSorteo = async (req, res) => {
         const { nombreGrupo, presupuesto, fechaEntrega, participantes } = req.body;
 
         // Generamos el token único para el enlace de administración
-        const adminToken = uuidv4();
+        const adminToken = crypto.randomUUID();
 
         // Creamos el nuevo documento usando nuestro Modelo
         const nuevoSorteo = new Sorteo({
