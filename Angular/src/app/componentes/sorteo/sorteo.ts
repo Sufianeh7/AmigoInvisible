@@ -54,7 +54,7 @@ export class Sorteo implements OnInit {
         },
         error: (err) => {
           console.error('Error al lanzar el sorteo:', err);
-          alert('Hubo un error al enviar los correos. Revisa la consola del backend.');
+          alert('Hubo un error al enviar los correos.');
           this.enviando.set(false); // Desbloqueamos por si quiere reintentar
         }
       })
