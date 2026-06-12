@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 
 export class GrupoService{
   // Url del backend (Node)
-  private apiUrl = 'https://amigoinvisible-rpo0.onrender.com/api/sorteos';
+  private apiUrl = 'https://amigo-invisible-node-87yz-gnu3rx68d-sufianeh7s-projects.vercel.app/';
 
   constructor(private http: HttpClient){}
 
