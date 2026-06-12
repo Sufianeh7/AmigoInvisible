@@ -10,7 +10,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   },
   family: 4,
-  connectionTimeout: 10000,
   tls: {
     rejectUnauthorized: false
   }
