@@ -27,7 +27,6 @@ export class Sorteo implements OnInit {
       this.grupoService.getGrupo(this.adminToken).subscribe({
         next: (datosDelBackend) => {
           this.grupo.set(datosDelBackend)
-          console.log('🎉 Datos del grupo recuperados:', this.grupo());
         },
         error: (err) => {
           console.error('Error al traer el sorteo:', err);
